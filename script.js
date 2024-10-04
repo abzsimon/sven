@@ -23,4 +23,39 @@ Lorsque nos corps ont fini, sont devenus animaux, sont mort et nés à nouveau, 
 
 `
 
+function getArrayofSlices (text, parts) {
+    moduloText = text.length%parts
+    cards = (text.length-moduloText)/parts
+    start = 0
+    slices = []
+    for (i = 0; i < parts; i++) {
+        end = start + cards;
+        slices.push([start, end]);
+        start = end
+    }
+    slices.push([start+1,start+1+moduloText])    
+    return(slices)
+}
 
+slicesIndex = getArrayofSlices(text,300)
+counter = 0
+
+function getNewSlice(slices, text) {
+    if (counter < slicesIndex.length) {
+        let textNode = document.createTextNode(text.substring(slices[counter][0],slices[counter][1]))
+        let oldDiv = document.querySelector('#textSlice');
+        oldDiv.textContent = ""; // Clear old content
+        oldDiv.appendChild(textNode); // Append the new text node
+        counter ++
+    } else {counter = 0}
+}
+
+document.querySelector("#imgContainer").addEventListener('click', function () {
+    getNewSlice(slicesIndex,text)
+    if (counter != 0) {
+        document.querySelector("#imgContainer").style.width = 11 + counter + "rem";
+        document.querySelector("#imgContainer").style.height = 11 + counter + "rem";
+        document.querySelector("#imgContainer").style.opacity = 1 - (counter/slicesIndex.length)
+        document.querySelector("#card p").style.fontStyle = "normal";
+    }
+    })
