@@ -22,7 +22,6 @@ Au moment où il commence à me doigter, je pense à la taxidermie. Les renards 
 Lorsque nos corps ont fini, sont devenus animaux, sont mort et nés à nouveau, lorsqu’ils se sont sauvagement entendus et qu’ils étaient incompréhensibles, nous sommes allongés immobiles. Je n’ai plus peur de lui, nous sommes ensembles dans la vitrine, là, pour toujours. Il ne me tombera pas dessus une deuxième fois, il n’y a plus rien à obtenir de moi. Plus tard je me réveille, j’entends sa respiration près de moi, cela pourrait être la respiration de n’importe qui. Quelque part dans la pièce, au pied du lit peut-être, le renard guette dans le noir et me considère. Je vais dans la salle de bain, mon corps s’y tient stérile. Je me regarde dans le miroir, sans me mouvoir. Personne ne me fixe en retour. Dehors, c’est bientôt l’aube. Un renard s’enfuit dans le bois, dans la nature sauvage, il en a vu assez.  
 
 `
-
 function getArrayofSlices (text, parts) {
     moduloText = text.length%parts
     cards = (text.length-moduloText)/parts
@@ -37,14 +36,27 @@ function getArrayofSlices (text, parts) {
     return(slices)
 }
 
-slicesIndex = getArrayofSlices(text,300)
-counter = 0
+let slicesChoice = document.querySelector('#fuchsStuecke').value;
+let slicesIndex = getArrayofSlices(text, slicesChoice); // Appeler la fonction pour initialiser slicesIndex
+let counter = 0;
+
+// Écouteur d'événement pour mettre à jour slicesChoice et slicesIndex lors de l'entrée
+document.querySelector('#fuchsStuecke').addEventListener('input', function () {
+    slicesChoice = document.querySelector('#fuchsStuecke').value; // Mettre à jour la variable globale
+    document.querySelector('#stuecke').textContent = slicesChoice;
+    // Met à jour slicesIndex à chaque changement de valeur
+    slicesIndex = getArrayofSlices(text, slicesChoice);
+});
 
 function getNewSlice(slices, text) {
     if (counter < slicesIndex.length) {
         let textNode = document.createTextNode(text.substring(slices[counter][0],slices[counter][1]))
         let oldDiv = document.querySelector('#textSlice');
         oldDiv.textContent = ""; // Clear old content
+        const ulElement = document.querySelector('ul');
+        if (ulElement) {
+            ulElement.parentNode.removeChild(ulElement);
+        }
         oldDiv.appendChild(textNode); // Append the new text node
         counter ++
     } else {counter = 0}
@@ -55,7 +67,5 @@ document.querySelector("#imgContainer").addEventListener('click', function () {
     if (counter != 0) {
         document.querySelector("#imgContainer").style.width = 11 + counter + "rem";
         document.querySelector("#imgContainer").style.height = 11 + counter + "rem";
-        document.querySelector("#imgContainer").style.opacity = 1 - (counter/slicesIndex.length)
-        document.querySelector("#card p").style.fontStyle = "normal";
-    }
+        document.querySelector("#imgContainer").style.opacity = 1 - (counter/slicesIndex.length)    }
     })

@@ -15,11 +15,28 @@
    
     <header>
         <h1>Der Fuchs</h1>
+        <div id="cuts">
+            <div id="foxcuts"
+                <label for="rangeInput">Morceaux de renard</label>
+                <p id ="stuecke">?</p>
+            </div>
+            <div id="bar-container">
+                <p>5</p>    
+                <input type="range" id="fuchsStuecke" class="slider" min="10" max="50" value="15" step="1">
+                <p>50</p>
+            </div>
+        </div>
         <p id ="author">Sven Spaltner</p>
     </header>
 
     <section id="card">
-        <p id = "textSlice">Cliquer sur le renard pour commencer, à la fin, double-cliquer pour recommencer</p>
+        <p id = "textSlice">
+            <ul>
+                <li>choisis en combien de morceaux tu veux couper le renard</li>
+                <li>puis clique sur son image</li>
+                <li>à la fin, double clique pour recommencer</li>
+            </ul>
+        </p>
     </section>
 
     <section id="picture">

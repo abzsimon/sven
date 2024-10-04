@@ -16,7 +16,72 @@ header {
     padding : 0em 1em 0em 1em;
     align-items:center;
     height:4em;
-  }
+}
+
+#cuts {
+    display:flex;
+    flex-direction:row;
+}
+
+#bar-container {
+    display:flex;
+    flex-direction: row;
+}
+#foxcuts {
+    display:flex;
+    flex-direction: row;
+}
+
+#stuecke {
+    color:darksalmon;
+    padding: 0 2em;
+}
+
+li {
+    list-style-type: katakana-iroha;
+}
+
+label {
+    padding-right:4em;
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+}
+
+/* Custom track (barre) color */
+.slider::-webkit-slider-runnable-track {
+    background: black; /* Green track for WebKit browsers */
+    height: 1px;
+}
+
+.slider::-moz-range-track {
+    background: black; /* Green track for Firefox */
+    height: 1px;
+}
+
+/* Custom thumb (curseur) color */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: white; /* Orange thumb */
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    background: white; /* Orange thumb for Firefox */
+    cursor: pointer;
+}
+
+/* Personnalisation de la barre (track) */
+.slider::-webkit-slider-runnable-track {
+    background: darksalmon;
+}
+
+.slider::-moz-range-track {
+    background: darksalmon;
+}
 
 header h1 {
     text-transform:uppercase;
@@ -45,10 +110,6 @@ h1, p {
     flex-direction: column;
     min-height:55vh
   }
-
-#card p {
-    font-style:italic;
-}
 
 #picture {
     grid-row-start:1;
