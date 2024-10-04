@@ -158,9 +158,9 @@ footer {
     grid-column-start: 1;
     grid-column-end: 11;
     display:flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: start;
     align-items: left;
     font-size:x-small;
-    padding-left:1em;
+    padding:2em 0em 0em 2em;
   }
